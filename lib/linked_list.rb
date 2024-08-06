@@ -90,72 +90,90 @@ class List
     previous_node = nil
 
     nil if current_node.nil?
-    @head=nil if current_node.next_node.nil?
-    
+    @head = nil if current_node.next_node.nil?
+
     while current_node.next_node
       previous_node = current_node
       current_node = current_node.next_node
     end
 
     previous_node.next_node = nil
-    @size-=1
+    @size -= 1
   end
 
   def contains?(value)
-    current_node=@head
+    current_node = @head
 
-    if current_node.next_node.nil? && current_node.value == value
-        return true
-    end
+    return true if current_node.next_node.nil? && current_node.value == value
 
     while current_node.next_node
-        if current_node.value == value
-            return true
-            break
-        end
-        current_node=current_node.next_node
+      if current_node.value == value
+        return true
+        break
+      end
+      current_node = current_node.next_node
     end
-    
+
     false
   end
 
   def find_value(val)
-    current_node=@head
-    index=0
+    current_node = @head
+    index = 0
     index if current_node.next_node.nil? && current_node.value == val
 
     while current_node.next_node
-        if current_node.value == val
-            return index
-            break
-        end
-        index+=1
-        current_node=current_node.next_node
+      if current_node.value == val
+        return index
+        break
+      end
+      index += 1
+      current_node = current_node.next_node
     end
   end
 
-  def insert_at(val,index)
-    
-    new_node=create_node(val)
-    
+  def insert_at(val, index)
+    new_node = create_node(val)
 
-    if index==0
-        new_node.next_node = @head
-        @head=new_node
+    if index == 0
+      new_node.next_node = @head
+      @head = new_node
     end
 
-    ind=0
-    current_node=@head
+    ind = 0
+    current_node = @head
 
     while current_node.next_node
-        ind+=1
-        break if ind==index
-        
-        current_node=current_node.next_node
+      ind += 1
+      break if ind == index
+
+      current_node = current_node.next_node
     end
 
     new_node.next_node = current_node.next_node
     current_node.next_node = new_node
   end
 
+  def remove_at(index)
+    "Lista goala, n-am ce sa sterg" if @head.nil?
+    current_node = @head
+    if current_node.next_node.nil?
+      current_node = nil
+      puts "Lista este acum goala!"
+    end
+
+    previous_node=nil
+    
+    ind = 0
+
+    while current_node.next_node
+        
+      ind += 1
+      break if ind == index
+      
+      previous_node=current_node
+      current_node = current_node.next_node
+    end
+    previous_node.next_node=current_node.next_node
+  end
 end

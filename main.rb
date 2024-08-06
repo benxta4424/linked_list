@@ -23,29 +23,32 @@ puts
 puts "!! The list after pop !!"
 puts
 puts list
-puts 
+puts
 puts "!! The size after pop !!"
 list.size
 
 puts
 print "Ce valoare cauti:"
-contine=gets.chomp.to_s
-verifica=list.contains?(contine)
-verfica_2=nil
-if verifica==true
-    verifica2='este in lista'
-else
-    verifica2='nu este in lista'
-end
+contine = gets.chomp.to_s
+verifica = list.contains?(contine)
+verfica_2 = nil
+verifica2 = if verifica == true
+              "este in lista"
+            else
+              "nu este in lista"
+            end
 puts
 puts "Valoarea '#{contine}' #{verifica2}"
 
 puts
 print "Value to find the index of:"
-value=gets.chomp.to_s
-puts 
+value = gets.chomp.to_s
+puts
 puts "'#{value}' is at index:#{list.find_value(value)}"
 
-list.insert_at(13,2)
+list.insert_at(13, 2)
+puts list
 
+puts
+list.remove_at(5)
 puts list
